@@ -3,10 +3,15 @@ package com.example.hiredapp;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,6 +19,10 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout signInForm;
     private Button signUpButton;
     private Button signInButton;
+
+
+    private String username ;
+    private String password ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +67,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Handle sign-up submission
                 // Example: Validate input fields and process sign-up logic
+                EditText edit = (EditText) findViewById(R.id.signupUsername) ;
+                username = edit.getText().toString();
+                 edit = (EditText) findViewById(R.id.signupPassword) ;
+                password = edit.getText().toString();
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference(username);
+
+
+                myRef.setValue(password);
+
             }
         });
 
@@ -67,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Handle sign-in submission
                 // Example: Validate input fields and process sign-in logic
+                // Write a message to the database
+
             }
         });
     }
