@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "583579119736",
+    "project_id": "hiredapp-22d8e",
+    "storage_bucket": "hiredapp-22d8e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:583579119736:android:3e81dcb4abf223e3963d8d",
+        "android_client_info": {
+          "package_name": "com.example.hiredapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkyN-Z1nBu_6YILBtSNKWJ8C3VJximFgI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
