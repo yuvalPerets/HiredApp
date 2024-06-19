@@ -48,11 +48,6 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         tools:ignore="VisualLintOverlap" />
 
-    <!-- Semi-transparent TextView for quotes -->
-
-    <!-- Adding the buttons in a 2x2 grid -->
-
-
     <TextView
         android:id="@+id/quoteTextView"
         android:layout_width="346dp"
@@ -78,6 +73,7 @@
         android:layout_margin="8dp"
         android:backgroundTint="@android:color/transparent"
         app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toStartOf="@+id/button2"
         app:layout_constraintHorizontal_bias="0.5"
@@ -94,9 +90,7 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@string/img_for_add_new_note"
                 android:scaleType="centerCrop"
-                android:src="@drawable/notes_pic" />
-
-
+                android:src="@drawable/add_note" />
         </FrameLayout>
     </androidx.cardview.widget.CardView>
 
@@ -107,6 +101,7 @@
         android:layout_margin="8dp"
         android:backgroundTint="@android:color/transparent"
         app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -122,10 +117,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/image_for_showing_notes"
-                android:scaleType="centerCrop"
+                android:scaleType="fitCenter"
                 android:src="@drawable/notes" />
-
-
         </FrameLayout>
     </androidx.cardview.widget.CardView>
 
@@ -136,6 +129,7 @@
         android:layout_margin="8dp"
         android:backgroundTint="@android:color/transparent"
         app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toStartOf="@+id/button4"
         app:layout_constraintHorizontal_bias="0.5"
@@ -152,9 +146,7 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@string/image_for_tips_and_tricks"
                 android:scaleType="centerCrop"
-                android:src="@drawable/tips_pic" />
-
-
+                android:src="@drawable/tips" />
         </FrameLayout>
     </androidx.cardview.widget.CardView>
 
@@ -165,6 +157,7 @@
         android:layout_margin="8dp"
         android:backgroundTint="@android:color/transparent"
         app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -181,12 +174,8 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@string/image_for_calander"
                 android:scaleType="centerCrop"
-                android:src="@drawable/calander_pic" />
-
-
+                android:src="@drawable/calendar" />
         </FrameLayout>
     </androidx.cardview.widget.CardView>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
