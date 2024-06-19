@@ -15,5 +15,15 @@
     <string name="sign_in_fix">Sign In</string>
     <string name="submit">Submit</string>
     <string name="loading_please_wait">Loading, please wait…</string>
+    <string name="welcome">welcome:</string>
+    <string name="app_logo">app logo</string>
+    <string name="button_1">Button 1</string>
+    <string name="button_2">Button 2</string>
+    <string name="button_3">Button 3</string>
+    <string name="button_4">Button 4</string>
+    <string name="img_for_add_new_note">img for add new note</string>
+    <string name="image_for_showing_notes">image for showing notes</string>
+    <string name="image_for_tips_and_tricks">image for tips and tricks</string>
+    <string name="image_for_calander">image for calander</string>
     <dimen name="margin_top_300dp">300dp</dimen>
 </resources>
