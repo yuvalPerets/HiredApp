@@ -100,7 +100,8 @@ public class MainActivity extends AppCompatActivity {
                 if (snapshot.hasChild(username)) {
                     Toast.makeText(MainActivity.this, "Username already exists", Toast.LENGTH_SHORT).show();
                 } else {
-                    usersRef.child(username).setValue(password).addOnCompleteListener(task -> {
+
+                    usersRef.child(username).child("password").setValue(password).addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             Toast.makeText(MainActivity.this, "User registered successfully", Toast.LENGTH_SHORT).show();
                             // Save username in SharedPreferences
@@ -137,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.hasChild(username)) {
-                    String storedPassword = snapshot.child(username).getValue(String.class);
+                    String storedPassword = snapshot.child(username).child("password").getValue(String.class);
                     if (storedPassword != null && storedPassword.equals(password)) {
                         Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
                         // Save username in SharedPreferences

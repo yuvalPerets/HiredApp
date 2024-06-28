@@ -15,7 +15,7 @@
     <string name="sign_in_fix">Sign In</string>
     <string name="submit">Submit</string>
     <string name="loading_please_wait">Loading, please wait…</string>
-    <string name="welcome">welcome:</string>
+    <string name="welcome">Welcome</string>
     <string name="app_logo">app logo</string>
     <string name="button_1">Button 1</string>
     <string name="button_2">Button 2</string>
@@ -25,5 +25,12 @@
     <string name="image_for_showing_notes">image for showing notes</string>
     <string name="image_for_tips_and_tricks">image for tips and tricks</string>
     <string name="image_for_calander">image for calander</string>
+    <string name="enter_your_note_here">Enter your note here</string>
+    <string name="save_note">Save Note</string>
+    <string name="back_to_main">Back to Main</string>
+    <string name="select_date">Select Date</string>
     <dimen name="margin_top_300dp">300dp</dimen>
+    <string name="view_notes_page">View Notes Page</string>
+    <string name="displaying_notes_for">Displaying notes for:</string>
+
 </resources>

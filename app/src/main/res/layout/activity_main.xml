@@ -72,9 +72,7 @@
         android:layout_below="@id/signInButton"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-
         android:layout_marginBottom="16dp"
-
         android:visibility="gone">
 
         <EditText
@@ -83,7 +81,8 @@
             android:layout_height="40dp"
             android:layout_margin="10dp"
             android:background="@color/white"
-            android:hint="@string/username" />
+            android:hint="@string/username"
+            android:textColor="#000000"/>
 
         <EditText
             android:id="@+id/signupPassword"
@@ -92,14 +91,16 @@
             android:layout_margin="10dp"
             android:background="@color/white"
             android:hint="@string/password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColor="#000000"/>
 
         <Button
             android:id="@+id/signupSubmitButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:text="@string/submit"
-            android:backgroundTint="#7E8ACC"
+            android:backgroundTint="#6FB9D7"
             android:textColor="#FFFFFF" />
     </LinearLayout>
 
@@ -110,7 +111,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_below="@id/signUpButton"
-
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
@@ -122,7 +122,8 @@
             android:layout_height="40dp"
             android:layout_margin="10dp"
             android:background="@color/white"
-            android:hint="@string/username" />
+            android:hint="@string/username"
+            android:textColor="#000000"/>
 
         <EditText
             android:id="@+id/signinPassword"
@@ -131,14 +132,16 @@
             android:layout_margin="10dp"
             android:background="@color/white"
             android:hint="@string/password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColor="#000000"/>
 
         <Button
             android:id="@+id/signinSubmitButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:text="@string/submit"
-            android:backgroundTint="#D587A2"
+            android:backgroundTint="#CC6084"
             android:textColor="#FFFFFF" />
     </LinearLayout>
 

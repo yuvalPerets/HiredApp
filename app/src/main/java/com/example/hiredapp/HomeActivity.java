@@ -2,6 +2,7 @@ package com.example.hiredapp;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -76,29 +77,53 @@ public class HomeActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Start new activity for Button 1
+                // Start new activity for Button 1 adding notes
                 Toast.makeText(HomeActivity.this, "button 1 pressed", Toast.LENGTH_SHORT).show();
+                saveUsernameAndNavigateNotes(username);
             }
         });
 
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Start new activity for Button 2
+                // Start new activity for Button 2 view notes
+               Toast.makeText(HomeActivity.this, "button 2 pressed", Toast.LENGTH_SHORT).show();
+
+                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(USERNAME_KEY, username);
+                editor.apply();
+
+                // Start HomeActivity
+                Intent intent = new Intent(HomeActivity.this, NotesViewActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Start new activity for Button 3
+                // Start new activity for Button 3 tips
+                Toast.makeText(HomeActivity.this, "button 3 pressed", Toast.LENGTH_SHORT).show();
+                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(USERNAME_KEY, username);
+                editor.apply();
+
+                // Start HomeActivity
+                Intent intent = new Intent(HomeActivity.this, TipsActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Start new activity for Button 4
+                /// Start new activity for Button 4 calander
+                Toast.makeText(HomeActivity.this, "button 4 pressed", Toast.LENGTH_SHORT).show();
+                saveUsernameAndNavigateCalendar(username);
             }
         });
     }
@@ -118,5 +143,29 @@ public class HomeActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         handler.removeCallbacksAndMessages(null); // Remove all callbacks when activity is destroyed
+    }
+    private void saveUsernameAndNavigateNotes(String username ) {
+        // Save username in SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(USERNAME_KEY, username);
+        editor.apply();
+
+        // Start HomeActivity
+        Intent intent = new Intent(HomeActivity.this, notes.class);
+        startActivity(intent);
+        finish();
+    }
+    private void saveUsernameAndNavigateCalendar(String username ) {
+        // Save username in SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(USERNAME_KEY, username);
+        editor.apply();
+
+        // Start HomeActivity
+        Intent intent = new Intent(HomeActivity.this, CalendarActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

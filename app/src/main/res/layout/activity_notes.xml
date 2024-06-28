@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image"
+    tools:context=".notes">
+
+    <TextView
+        android:id="@+id/tvWelcomeMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome"
+        android:textSize="24sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/tvUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/username"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/tvWelcomeMessage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <EditText
+        android:id="@+id/etDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/select_date"
+        android:focusable="false"
+        android:clickable="true"
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tvUsername"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintWidth_default="spread"
+        android:inputType="date"
+        tools:ignore="Autofill,KeyboardInaccessibleWidget" />
+
+    <EditText
+        android:id="@+id/etNote"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_your_note_here"
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@id/etDate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintWidth_default="spread"
+        android:inputType="textMultiLine"
+        android:minHeight="100dp" />
+
+    <Button
+        android:id="@+id/btnSaveNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save_note"
+        app:layout_constraintTop_toBottomOf="@id/etNote"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/btnBackToMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back_to_main"
+        app:layout_constraintTop_toBottomOf="@id/btnSaveNote"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
