@@ -15,5 +15,29 @@
     <string name="sign_in_fix">Sign In</string>
     <string name="submit">Submit</string>
     <string name="loading_please_wait">Loading, please wait…</string>
+    <string name="welcome">Welcome</string>
+    <string name="app_logo">app logo</string>
+    <string name="button_1">Button 1</string>
+    <string name="button_2">Button 2</string>
+    <string name="button_3">Button 3</string>
+    <string name="button_4">Button 4</string>
+    <string name="img_for_add_new_note">img for add new note</string>
+    <string name="image_for_showing_notes">image for showing notes</string>
+    <string name="image_for_tips_and_tricks">image for tips and tricks</string>
+    <string name="image_for_calander">image for calander</string>
+    <string name="enter_your_note_here">Enter your note here</string>
+    <string name="save_note">Save Note</string>
+    <string name="back_to_main">Back to Main</string>
+    <string name="select_date">Select Date</string>
     <dimen name="margin_top_300dp">300dp</dimen>
+    <string name="view_notes_page">View Notes Page</string>
+    <string name="displaying_notes_for">Displaying notes for:</string>
+    <string name="this_is_the_calendar_page_here_you_can_see_notes_on_certain_dates">This is the calendar page. Here you can see notes on certain dates.</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="send_sms">Send SMS</string>
+    <string name="company_name">Company Name</string>
+    <string name="track_your_job_applications_easily_by_adding_each_application_sent">Track your job applications easily by adding each application sent!</string>
+    <string name="save" >save</string>
+    <string name="send_sms_notification">send sms notification</string>
+
 </resources>

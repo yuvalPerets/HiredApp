@@ -1,5 +1,8 @@
 package com.example.hiredapp;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
     private String username;
     private String password;
+    private static final String SHARED_PREFS = "sharedPrefs";
+    private static final String USERNAME_KEY = "username";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,9 +100,12 @@ public class MainActivity extends AppCompatActivity {
                 if (snapshot.hasChild(username)) {
                     Toast.makeText(MainActivity.this, "Username already exists", Toast.LENGTH_SHORT).show();
                 } else {
-                    usersRef.child(username).setValue(password).addOnCompleteListener(task -> {
+
+                    usersRef.child(username).child("password").setValue(password).addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             Toast.makeText(MainActivity.this, "User registered successfully", Toast.LENGTH_SHORT).show();
+                            // Save username in SharedPreferences
+                            saveUsernameAndNavigate(username);
                         } else {
                             Toast.makeText(MainActivity.this, "Registration failed: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                             Log.e(TAG, "Registration failed", task.getException());
@@ -130,9 +138,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.hasChild(username)) {
-                    String storedPassword = snapshot.child(username).getValue(String.class);
+                    String storedPassword = snapshot.child(username).child("password").getValue(String.class);
                     if (storedPassword != null && storedPassword.equals(password)) {
                         Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                        // Save username in SharedPreferences
+                        saveUsernameAndNavigate(username);
                     } else {
                         Toast.makeText(MainActivity.this, "Password is incorrect", Toast.LENGTH_SHORT).show();
                     }
@@ -147,5 +157,19 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, "Database error", error.toException());
             }
         });
+    }
+    //going into new activity with shared preference
+
+    private void saveUsernameAndNavigate(String username) {
+        // Save username in SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(USERNAME_KEY, username);
+        editor.apply();
+
+        // Start HomeActivity
+        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
