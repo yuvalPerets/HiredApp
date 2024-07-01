@@ -31,6 +31,7 @@ public class notes extends AppCompatActivity {
 
     private TextView tvUsername;
     private EditText etDate;
+    private EditText etCompanyName;
     private EditText etNote;
     private Button btnSaveNote;
     private Button btnBackToMain;
@@ -46,10 +47,10 @@ public class notes extends AppCompatActivity {
 
         tvUsername = findViewById(R.id.tvUsername);
         etDate = findViewById(R.id.etDate);
+        etCompanyName = findViewById(R.id.etCompanyName);
         etNote = findViewById(R.id.etNote);
         btnSaveNote = findViewById(R.id.btnSaveNote);
         btnBackToMain = findViewById(R.id.btnBackToMain);
-
 
         // Retrieve the username from SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
@@ -109,10 +110,11 @@ public class notes extends AppCompatActivity {
 
     private void saveNote(String username) {
         String date = etDate.getText().toString();
+        String companyName = etCompanyName.getText().toString();
         String note = etNote.getText().toString();
 
-        if (date.isEmpty() || note.isEmpty()) {
-            Toast.makeText(this, "Please enter a date and a note", Toast.LENGTH_SHORT).show();
+        if (date.isEmpty() || companyName.isEmpty() || note.isEmpty()) {
+            Toast.makeText(this, "Please enter a date, company name, and a note", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -123,13 +125,14 @@ public class notes extends AppCompatActivity {
         String noteId = usersRef.push().getKey();
 
         // Create a Note object
-        Note newNote = new Note(date, note);
+        Note newNote = new Note(date, companyName, note);
 
         // Save the note under the user's node in Firebase
         usersRef.child(username).child("notes").child(noteId).setValue(newNote);
 
         Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();
     }
+
     private void saveUsernameAndNavigate(String username) {
         // Save username in SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
@@ -146,14 +149,16 @@ public class notes extends AppCompatActivity {
     // POJO class representing a Note
     public static class Note {
         public String date;
+        public String companyName;
         public String note;
 
         public Note() {
             // Default constructor required for calls to DataSnapshot.getValue(Note.class)
         }
 
-        public Note(String date, String note) {
+        public Note(String date, String companyName, String note) {
             this.date = date;
+            this.companyName = companyName;
             this.note = note;
         }
     }

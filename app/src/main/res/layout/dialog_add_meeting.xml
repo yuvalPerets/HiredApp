@@ -21,9 +21,15 @@
         android:inputType="phone"
         android:autofillHints="" />
 
+    <CheckBox
+        android:id="@+id/sendSmsCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/send_sms_notification" />
+
     <Button
         android:id="@+id/sendSmsButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/send_sms"/>
+        android:text="@string/save"/>
 </LinearLayout>

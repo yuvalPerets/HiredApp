@@ -131,7 +131,7 @@ public class TipsActivity extends AppCompatActivity {
 
     private void setupAnimation() {
         ObjectAnimator animator = ObjectAnimator.ofFloat(animationView, "translationX", -1000f, 1000f);
-        animator.setDuration(2000);
+        animator.setDuration(10000);
         animator.setRepeatCount(ObjectAnimator.INFINITE);
         animator.setRepeatMode(ObjectAnimator.RESTART);
         animator.start();

@@ -77,8 +77,6 @@ public class HomeActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Start new activity for Button 1 adding notes
-                Toast.makeText(HomeActivity.this, "button 1 pressed", Toast.LENGTH_SHORT).show();
                 saveUsernameAndNavigateNotes(username);
             }
         });
@@ -86,9 +84,6 @@ public class HomeActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Start new activity for Button 2 view notes
-               Toast.makeText(HomeActivity.this, "button 2 pressed", Toast.LENGTH_SHORT).show();
-
                 SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString(USERNAME_KEY, username);
@@ -104,8 +99,6 @@ public class HomeActivity extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Start new activity for Button 3 tips
-                Toast.makeText(HomeActivity.this, "button 3 pressed", Toast.LENGTH_SHORT).show();
                 SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString(USERNAME_KEY, username);
@@ -121,8 +114,6 @@ public class HomeActivity extends AppCompatActivity {
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /// Start new activity for Button 4 calander
-                Toast.makeText(HomeActivity.this, "button 4 pressed", Toast.LENGTH_SHORT).show();
                 saveUsernameAndNavigateCalendar(username);
             }
         });

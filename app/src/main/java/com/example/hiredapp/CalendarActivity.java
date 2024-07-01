@@ -10,19 +10,19 @@ import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 import java.util.Map;
@@ -36,16 +36,12 @@ public class CalendarActivity extends AppCompatActivity {
     private Button btnViewNote;
     private TextView usernameText;
 
+    private String username ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_calendar);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
         btnBackToMain = findViewById(R.id.mainButton);
         btnViewNote = findViewById(R.id.viewNoteButton);
@@ -53,7 +49,7 @@ public class CalendarActivity extends AppCompatActivity {
 
         // Retrieve the username from SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
-        String username = sharedPreferences.getString(USERNAME_KEY, "");
+        username = sharedPreferences.getString(USERNAME_KEY, "");
         usernameText.setText(username);
 
         // Handle back to main button click
@@ -85,7 +81,6 @@ public class CalendarActivity extends AppCompatActivity {
         updateCalendarView();
     }
 
-
     private void showAddMeetingDialog(int year, int month, int dayOfMonth) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_add_meeting, null);
@@ -94,6 +89,7 @@ public class CalendarActivity extends AppCompatActivity {
         EditText companyName = dialogView.findViewById(R.id.companyName);
         EditText phoneNumber = dialogView.findViewById(R.id.phoneNumber);
         Button sendSmsButton = dialogView.findViewById(R.id.sendSmsButton);
+        CheckBox sendSmsCheckbox = dialogView.findViewById(R.id.sendSmsCheckbox); // Add CheckBox for sending SMS
 
         AlertDialog dialog = builder.create();
 
@@ -105,14 +101,26 @@ public class CalendarActivity extends AppCompatActivity {
                 String message = "Meeting with " + company + " scheduled on " + dayOfMonth + "/" + (month + 1) + "/" + year;
 
                 if (!company.isEmpty() && !phone.isEmpty()) {
-                    if (ContextCompat.checkSelfPermission(CalendarActivity.this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(CalendarActivity.this, new String[]{Manifest.permission.SEND_SMS}, REQUEST_SMS_PERMISSION);
-                    } else {
-                        sendSms(phone, message);
-                        saveMeeting(year, month, dayOfMonth, company, phone);
-                        updateCalendarView(); // Update calendar view after saving meeting
-                        dialog.dismiss();
+                    // Check if SMS checkbox is checked
+                    boolean sendSmsChecked = sendSmsCheckbox.isChecked();
+
+                    if (sendSmsChecked) {
+                        // Request SMS permission if not granted
+                        if (ContextCompat.checkSelfPermission(CalendarActivity.this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+                            ActivityCompat.requestPermissions(CalendarActivity.this, new String[]{Manifest.permission.SEND_SMS}, REQUEST_SMS_PERMISSION);
+                        } else {
+                            sendSms(phone, message);
+                        }
                     }
+
+                    // Save meeting details to Firebase
+                    saveMeetingToFirebase(username, year, month, dayOfMonth, company, phone);
+
+                    // Save meeting locally (SharedPreferences)
+                    saveMeeting(year, month, dayOfMonth, company, phone);
+
+                    updateCalendarView(); // Update calendar view after saving meeting
+                    dialog.dismiss();
                 } else {
                     Toast.makeText(CalendarActivity.this, "Please enter all details", Toast.LENGTH_SHORT).show();
                 }
@@ -121,9 +129,10 @@ public class CalendarActivity extends AppCompatActivity {
 
         dialog.show();
     }
+
     private void updateCalendarView() {
         CalendarView calendarView = findViewById(R.id.calendarView);
-        //Fetch meeting details from SharedPreferences
+        // Fetch meeting details from SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         Map<String, ?> allEntries = sharedPreferences.getAll();
 
@@ -143,6 +152,7 @@ public class CalendarActivity extends AppCompatActivity {
 
         calendarView.invalidate(); // Forces the calendar to redraw itself
     }
+
     private long getDateInMillis(int year, int month, int dayOfMonth) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month, dayOfMonth);
@@ -176,10 +186,23 @@ public class CalendarActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    private String getMeetingDetails(int year, int month, int dayOfMonth) {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
-        String dateKey = year + "-" + month + "-" + dayOfMonth;
-        return sharedPreferences.getString(dateKey, null);
+    private void saveMeetingToFirebase(String username, int year, int month, int dayOfMonth, String company, String phone) {
+        // Format the date as a string
+        String date = dayOfMonth + "-" + (month + 1) + "-" + year;
+
+        // Assuming you have Firebase initialized and a reference to your Firebase database
+        DatabaseReference meetingsRef = FirebaseDatabase.getInstance().getReference()
+                .child("users").child(username).child("meetings");
+
+        // Generate a unique key for the meeting
+        String meetingKey = meetingsRef.push().getKey();
+
+        // Create a meeting object with company name, date, and phone number
+        Meeting meeting = new Meeting(company, date, phone);
+
+        // Save the meeting to Firebase
+        assert meetingKey != null;
+        meetingsRef.child(meetingKey).setValue(meeting);
     }
 
     private void saveUsernameAndNavigate(String username, Class<?> destinationActivity) {
@@ -193,5 +216,45 @@ public class CalendarActivity extends AppCompatActivity {
         Intent intent = new Intent(CalendarActivity.this, destinationActivity);
         startActivity(intent);
         finish();
+    }
+    public class Meeting {
+        private String companyName;
+        private String date; // Combine day, month, year into a single string
+        private String phoneNumber;
+
+        // Required default constructor for Firebase
+        public Meeting() {
+            // Default constructor required for calls to DataSnapshot.getValue(Meeting.class)
+        }
+
+        public Meeting(String companyName, String date, String phoneNumber) {
+            this.companyName = companyName;
+            this.date = date;
+            this.phoneNumber = phoneNumber;
+        }
+
+        public String getCompanyName() {
+            return companyName;
+        }
+
+        public void setCompanyName(String companyName) {
+            this.companyName = companyName;
+        }
+
+        public String getDate() {
+            return date;
+        }
+
+        public void setDate(String date) {
+            this.date = date;
+        }
+
+        public String getPhoneNumber() {
+            return phoneNumber;
+        }
+
+        public void setPhoneNumber(String phoneNumber) {
+            this.phoneNumber = phoneNumber;
+        }
     }
 }

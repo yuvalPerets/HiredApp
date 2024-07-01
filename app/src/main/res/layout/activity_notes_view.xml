@@ -47,10 +47,14 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:padding="16dp"
+        android:gravity="center"
+        android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@id/usernameTextView"
         app:layout_constraintBottom_toTopOf="@id/mainButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
 
     <Button
         android:id="@+id/mainButton"

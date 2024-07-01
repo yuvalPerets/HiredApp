@@ -36,5 +36,8 @@
     <string name="phone_number">Phone Number</string>
     <string name="send_sms">Send SMS</string>
     <string name="company_name">Company Name</string>
+    <string name="track_your_job_applications_easily_by_adding_each_application_sent">Track your job applications easily by adding each application sent!</string>
+    <string name="save" >save</string>
+    <string name="send_sms_notification">send sms notification</string>
 
 </resources>
