@@ -32,5 +32,9 @@
     <dimen name="margin_top_300dp">300dp</dimen>
     <string name="view_notes_page">View Notes Page</string>
     <string name="displaying_notes_for">Displaying notes for:</string>
+    <string name="this_is_the_calendar_page_here_you_can_see_notes_on_certain_dates">This is the calendar page. Here you can see notes on certain dates.</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="send_sms">Send SMS</string>
+    <string name="company_name">Company Name</string>
 
 </resources>

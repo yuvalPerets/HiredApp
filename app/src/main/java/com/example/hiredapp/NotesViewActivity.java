@@ -76,6 +76,7 @@ public class NotesViewActivity extends AppCompatActivity {
     private void fetchNotes(String username) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(username).child("notes");
         databaseReference.addValueEventListener(new ValueEventListener() {
+            /** @noinspection unchecked*/
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 notesList.clear();

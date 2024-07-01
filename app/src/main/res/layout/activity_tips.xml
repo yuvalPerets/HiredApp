@@ -77,7 +77,7 @@
         android:layout_width="201dp"
         android:layout_height="212dp"
         android:layout_marginBottom="16dp"
-        android:src="@drawable/suitcasewoman"
+        android:src="@drawable/suitcasenbg"
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toTopOf="@id/mainButton"
         app:layout_constraintEnd_toEndOf="parent"

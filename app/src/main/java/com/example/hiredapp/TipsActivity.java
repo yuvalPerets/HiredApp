@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.MediaController;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.VideoView;
@@ -56,8 +57,8 @@ public class TipsActivity extends AppCompatActivity {
         // Initialize videoUrls here
         videoUrls = new String[] {
                 "android.resource://" + getPackageName() + "/" + R.raw.linkdin,
-                "android.resource://" + getPackageName() + "/" + R.raw.linkdin,
-                "android.resource://" + getPackageName() + "/" + R.raw.linkdin
+                "android.resource://" + getPackageName() + "/" + R.raw.jobhunt,
+                "android.resource://" + getPackageName() + "/" + R.raw.bestcandidate
         };
 
         // Retrieve the username from SharedPreferences
@@ -122,6 +123,10 @@ public class TipsActivity extends AppCompatActivity {
                 videoView.start();
             }
         });
+        // Set up media controller
+        MediaController mediaController = new MediaController(this);
+        mediaController.setAnchorView(videoView);
+        videoView.setMediaController(mediaController);
     }
 
     private void setupAnimation() {
