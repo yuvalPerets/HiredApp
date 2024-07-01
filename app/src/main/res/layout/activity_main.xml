@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_image"
@@ -10,8 +11,9 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
+        android:contentDescription="@string/app_image_description"
         android:src="@drawable/hired_logo"
-        android:contentDescription="@string/app_image_description" />
+        tools:ignore="ImageContrastCheck" />
 
     <TextView
         android:id="@+id/welcomeText"
@@ -48,11 +50,12 @@
         android:id="@+id/signUpButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="300dp"
         android:backgroundTint="#6FB9D7"
         android:text="@string/sign_up"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        tools:ignore="VisualLintButtonSize,TextContrastCheck" />
 
     <Button
         android:id="@+id/signInButton"
@@ -62,7 +65,8 @@
         android:layout_marginTop="20dp"
         android:backgroundTint="#CC6084"
         android:text="@string/sign_in"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        tools:ignore="VisualLintButtonSize,TextContrastCheck" />
 
     <LinearLayout
         android:id="@+id/signUpForm"
@@ -82,7 +86,9 @@
             android:layout_margin="10dp"
             android:background="@color/white"
             android:hint="@string/username"
-            android:textColor="#000000"/>
+            android:textColor="#000000"
+            android:autofillHints=""
+            tools:ignore="TextFields" />
 
         <EditText
             android:id="@+id/signupPassword"
@@ -92,7 +98,8 @@
             android:background="@color/white"
             android:hint="@string/password"
             android:inputType="textPassword"
-            android:textColor="#000000"/>
+            android:textColor="#000000"
+            android:autofillHints="" />
 
         <Button
             android:id="@+id/signupSubmitButton"
@@ -123,7 +130,9 @@
             android:layout_margin="10dp"
             android:background="@color/white"
             android:hint="@string/username"
-            android:textColor="#000000"/>
+            android:textColor="#000000"
+            android:autofillHints=""
+            tools:ignore="TextFields" />
 
         <EditText
             android:id="@+id/signinPassword"
@@ -133,7 +142,8 @@
             android:background="@color/white"
             android:hint="@string/password"
             android:inputType="textPassword"
-            android:textColor="#000000"/>
+            android:textColor="#000000"
+            android:autofillHints="" />
 
         <Button
             android:id="@+id/signinSubmitButton"

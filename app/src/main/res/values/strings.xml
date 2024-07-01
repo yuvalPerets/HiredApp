@@ -39,5 +39,9 @@
     <string name="track_your_job_applications_easily_by_adding_each_application_sent">Track your job applications easily by adding each application sent!</string>
     <string name="save" >save</string>
     <string name="send_sms_notification">send sms notification</string>
+    <string name="page_for_tips">Page for Tips</string>
+    <string name="click_below_to_change_type_of_video">Click below to change type of video</string>
+    <string name="here_you_can_find_different_types_of_tips_to_get_you_hired_faster_and_smarter">Here you can find different types of tips to get you hired faster and smarter.</string>
+    <string name="todo">TODO</string>
 
 </resources>

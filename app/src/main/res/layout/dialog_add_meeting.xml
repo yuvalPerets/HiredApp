@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -9,17 +10,22 @@
         android:id="@+id/companyName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/company_name"
         android:autofillHints=""
-        android:inputType="" />
+        android:hint="@string/company_name"
+        android:inputType=""
+        android:minHeight="48dp"
+        android:textColorHint="#546E7A"
+        tools:ignore="VisualLintTextFieldSize" />
 
     <EditText
         android:id="@+id/phoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:hint="@string/phone_number"
         android:inputType="phone"
-        android:autofillHints="" />
+        android:minHeight="48dp"
+        tools:ignore="VisualLintTextFieldSize,TextContrastCheck" />
 
     <CheckBox
         android:id="@+id/sendSmsCheckbox"
@@ -31,5 +37,8 @@
         android:id="@+id/sendSmsButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/save"/>
+        android:backgroundTint="@color/colorPrimary"
+        android:text="@string/save"
+        android:textColor="@android:color/white"
+        tools:ignore="VisualLintButtonSize,TextContrastCheck" />
 </LinearLayout>

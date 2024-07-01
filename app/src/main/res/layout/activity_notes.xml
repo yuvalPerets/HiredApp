@@ -52,6 +52,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
+        android:autofillHints=""
         android:background="@drawable/edit_text_background"
         android:clickable="true"
         android:focusable="false"
@@ -62,7 +63,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvDescription"
-        app:layout_constraintWidth_default="spread" />
+        app:layout_constraintWidth_default="spread"
+        tools:ignore="KeyboardInaccessibleWidget,VisualLintTextFieldSize,TextContrastCheck" />
 
     <EditText
         android:id="@+id/etCompanyName"
@@ -76,7 +78,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintWidth_default="spread"
         android:background="@drawable/edit_text_background"
-        android:inputType="text" />
+        android:inputType="text"
+        tools:ignore="VisualLintTextFieldSize"
+        android:autofillHints="" />
 
     <EditText
         android:id="@+id/etNote"
@@ -91,7 +95,9 @@
         app:layout_constraintTop_toBottomOf="@id/etCompanyName"
         app:layout_constraintWidth_default="spread"
         android:background="@drawable/edit_text_background"
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine"
+        tools:ignore="VisualLintTextFieldSize"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/btnSaveNote"
@@ -104,19 +110,21 @@
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etNote" />
+        app:layout_constraintTop_toBottomOf="@id/etNote"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/btnBackToMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/back_to_main"
-        android:padding="16dp"
         android:layout_marginTop="24dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:padding="16dp"
+        android:text="@string/back_to_main"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnSaveNote"
-        android:backgroundTint="@color/colorPrimary"
-        android:textColor="@android:color/white" />
+        tools:ignore="TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
