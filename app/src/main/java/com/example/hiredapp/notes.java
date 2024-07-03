@@ -3,23 +3,15 @@ package com.example.hiredapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import android.app.DatePickerDialog;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -29,13 +21,10 @@ import java.util.Locale;
 
 public class notes extends AppCompatActivity {
 
-    private TextView tvUsername;
     private EditText etDate;
     private EditText etCompanyName;
     private EditText etNote;
-    private Button btnSaveNote;
-    private Button btnBackToMain;
-    private SharedPreferences sharedPreferences;
+
     private static final String SHARED_PREFS = "sharedPrefs";
 
     private static final String USERNAME_KEY = "username";
@@ -45,12 +34,12 @@ public class notes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
 
-        tvUsername = findViewById(R.id.tvUsername);
+        TextView tvUsername = findViewById(R.id.tvUsername);
         etDate = findViewById(R.id.etDate);
         etCompanyName = findViewById(R.id.etCompanyName);
         etNote = findViewById(R.id.etNote);
-        btnSaveNote = findViewById(R.id.btnSaveNote);
-        btnBackToMain = findViewById(R.id.btnBackToMain);
+        Button btnSaveNote = findViewById(R.id.btnSaveNote);
+        Button btnBackToMain = findViewById(R.id.btnBackToMain);
 
         // Retrieve the username from SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
@@ -128,6 +117,7 @@ public class notes extends AppCompatActivity {
         Note newNote = new Note(date, companyName, note);
 
         // Save the note under the user's node in Firebase
+        assert noteId != null;
         usersRef.child(username).child("notes").child(noteId).setValue(newNote);
 
         Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show();

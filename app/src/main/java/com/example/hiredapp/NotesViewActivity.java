@@ -14,6 +14,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -39,10 +40,7 @@ public class NotesViewActivity extends AppCompatActivity {
     private static final String SHARED_PREFS = "sharedPrefs";
     private static final String USERNAME_KEY = "username";
 
-    // UI elements
-    private Button btnBackToMain;
     private ListView listViewNotes;
-    private TextView usernameTextView;
 
     // List to hold notes data
     private List<Map<String, Object>> notesList;
@@ -59,9 +57,10 @@ public class NotesViewActivity extends AppCompatActivity {
         });
 
         // Initialize UI elements
-        btnBackToMain = findViewById(R.id.mainButton);
+        // UI elements
+        Button btnBackToMain = findViewById(R.id.mainButton);
         listViewNotes = findViewById(R.id.listViewNotes);
-        usernameTextView = findViewById(R.id.usernameTextView);
+        TextView usernameTextView = findViewById(R.id.usernameTextView);
 
         // Retrieve the username from SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
@@ -84,7 +83,7 @@ public class NotesViewActivity extends AppCompatActivity {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(username).child("notes");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 notesList.clear();
                 for (DataSnapshot noteSnapshot : dataSnapshot.getChildren()) {
                     // Extract note details from dataSnapshot
@@ -95,7 +94,9 @@ public class NotesViewActivity extends AppCompatActivity {
                     // Format date if needed
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                     try {
+                        assert date != null;
                         Date formattedDate = dateFormat.parse(date);
+                        assert formattedDate != null;
                         date = DateFormat.getDateInstance(DateFormat.LONG).format(formattedDate); // Format as per your requirement
                     } catch (ParseException e) {
                         Log.e("NotesViewActivity", "Date parsing error: " + e.getMessage());
@@ -116,7 +117,7 @@ public class NotesViewActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 // Handle possible errors.
                 Log.e("NotesViewActivity", "Error fetching notes", databaseError.toException());
             }
@@ -138,8 +139,8 @@ public class NotesViewActivity extends AppCompatActivity {
                 TextView text2 = view.findViewById(android.R.id.text2);
 
                 // Set text for date, note, and companyName
-                text1.setText("Date: " + Objects.requireNonNull(notesList.get(position).get("date")).toString());
-                text2.setText("Company Name: " + Objects.requireNonNull(notesList.get(position).get("companyName")).toString() + "\n" + "Note: " + Objects.requireNonNull(notesList.get(position).get("note")).toString());
+                text1.setText("Date: " + Objects.requireNonNull(notesList.get(position).get("date")));
+                text2.setText("Company Name: " + Objects.requireNonNull(notesList.get(position).get("companyName")) + "\n" + "Note: " + Objects.requireNonNull(notesList.get(position).get("note")));
 
                 return view;
             }

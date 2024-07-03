@@ -12,29 +12,19 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.MediaController;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.VideoView;
-
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class TipsActivity extends AppCompatActivity {
     private static final String SHARED_PREFS = "sharedPrefs";
     private static final String USERNAME_KEY = "username";
-    private Button btnBackToMain;
     private VideoView videoView;
-    private Spinner spinnerTips;
-    private TextView titleTextView;
-    private TextView descriptionTextView;
     private ImageView animationView;
 
-    private String[] tips = {
+    private final String[] tips = {
             "Better LinkedIn",
             "How to Hunt for a Job",
             "Make Yourself a Better Candidate"
@@ -47,11 +37,11 @@ public class TipsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tips);
 
-        titleTextView = findViewById(R.id.titleTextView);
-        descriptionTextView = findViewById(R.id.descriptionTextView);
-        spinnerTips = findViewById(R.id.spinnerTips);
+        TextView titleTextView = findViewById(R.id.titleTextView);
+        TextView descriptionTextView = findViewById(R.id.descriptionTextView);
+        Spinner spinnerTips = findViewById(R.id.spinnerTips);
         videoView =  (VideoView)findViewById(R.id.videoView);
-        btnBackToMain = findViewById(R.id.mainButton);
+        Button btnBackToMain = findViewById(R.id.mainButton);
         animationView = findViewById(R.id.animationView);
 
         // Initialize videoUrls here
