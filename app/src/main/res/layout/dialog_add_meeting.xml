@@ -4,25 +4,25 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/colorPrimarySecond"
+
     android:padding="16dp">
 
     <EditText
         android:id="@+id/companyName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+
         android:autofillHints=""
         android:hint="@string/company_name"
         android:inputType=""
         android:minHeight="48dp"
-        android:textColorHint="#546E7A"
+
         tools:ignore="VisualLintTextFieldSize" />
 
     <EditText
         android:id="@+id/phoneNumber"
         android:layout_width="match_parent"
-        android:background="@color/white"
+
         android:layout_height="wrap_content"
         android:autofillHints=""
         android:hint="@string/phone_number"
