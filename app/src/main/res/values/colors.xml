@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="colorPrimary">#CC6084</color> // buttons
+    <color name="colorPrimarySecond">#6FB9D7</color> // buttons
     <color name="colorPrimaryDark">#000000</color> // welcome + username text
     <color name="colorAccent">#FF9800</color> // border
 

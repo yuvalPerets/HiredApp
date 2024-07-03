@@ -43,5 +43,6 @@
     <string name="click_below_to_change_type_of_video">Click below to change type of video</string>
     <string name="here_you_can_find_different_types_of_tips_to_get_you_hired_faster_and_smarter">Here you can find different types of tips to get you hired faster and smarter.</string>
     <string name="todo">TODO</string>
+    <string name="calendarDescriptionText">This is a page that will help you manage your interview better!\nClick on a date you scheduled a meeting, enter the name of the company and your phone,\n and an SMS with the meeting details will be sent to you!</string>
 
 </resources>

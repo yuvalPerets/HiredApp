@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/this_is_the_calendar_page_here_you_can_see_notes_on_certain_dates"
+        android:text="@string/calendarDescriptionText"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textSize="16sp"

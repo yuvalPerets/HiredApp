@@ -4,12 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@color/colorPrimarySecond"
     android:padding="16dp">
 
     <EditText
         android:id="@+id/companyName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:autofillHints=""
         android:hint="@string/company_name"
         android:inputType=""
@@ -20,6 +22,7 @@
     <EditText
         android:id="@+id/phoneNumber"
         android:layout_width="match_parent"
+        android:background="@color/white"
         android:layout_height="wrap_content"
         android:autofillHints=""
         android:hint="@string/phone_number"
@@ -27,11 +30,7 @@
         android:minHeight="48dp"
         tools:ignore="VisualLintTextFieldSize,TextContrastCheck" />
 
-    <CheckBox
-        android:id="@+id/sendSmsCheckbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/send_sms_notification" />
+
 
     <Button
         android:id="@+id/sendSmsButton"

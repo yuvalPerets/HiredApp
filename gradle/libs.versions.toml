@@ -10,6 +10,7 @@ constraintlayout = "2.1.4"
 googleServices = "4.4.2"
 firebaseDatabase = "21.0.0"
 cardview = "1.0.0"
+calview = "1.9.2"
 
 
 
@@ -24,6 +25,10 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 google-services = { group = "com.google.gms", name = "google-services", version.ref = "googleServices" }
 firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
 cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }
+calnedarview = { group = "com.applandeo", name = "material-calendar-view", version.ref = "calview" }
+
+
+
 
 
 
